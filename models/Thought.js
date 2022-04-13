@@ -44,6 +44,7 @@ const thoughtSchema = new Schema (
     username: {
         type: String,
         required: 'Please type in your username',
+        ref: 'User'
     },
     reactions: [reactionSchema]       
     },
