@@ -43,7 +43,7 @@ const thoughtSchema = new Schema (
     },
     username: {
         type: String,
-        required: 'Please type in your username'
+        required: 'Please type in your username',
     },
     reactions: [reactionSchema]       
     },
@@ -59,6 +59,6 @@ thoughtSchema.virtual('reactionCount').get(function() {
     return this.reactions.reduce((total, thoughts) => total + thoughts.reactions.length + 1, 0)
 })
 
-const Thoughts = model('thoughts', thoughtSchema);
+const Thought = model('thoughts', thoughtSchema);
 
-module.exports = Thoughts;
+module.exports = Thought;
