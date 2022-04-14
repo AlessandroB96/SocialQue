@@ -45,17 +45,37 @@ const userController = {
         });
     },
     
-    updatePizza({ params, body}, res) {
-        Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true }) //new: true returns the new version of the document
-          .then(dbPizzaData => {
-              if (!dbPizzaData) {
-                  res.status(404).json({ message: 'No pizza found with this id!' });
-                  return;
-              }
-              res.json(dbPizzaData);
-          })
-          .catch(err => res.status(400).json(err));
+    addFriend({ params }, res) {
+        User.findOneAndUpdate(
+            { _id: params.id },
+            { $push: { friends: params.friendId }},
+            { new: true , runValidators: true }
+        )
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'this user does not exist'});
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => res.status(400).json(err));
     },
+
+    removeFriend({ params }, res) {
+        User.findOneAndUpdate(
+            { _id: params.id },
+            { $pull: { friends: params.friendId }},
+            { new: true }
+        )
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'this user does not exist'});
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => res.status(400).json(err));
+    }
 }
 
 module.exports = userController;
