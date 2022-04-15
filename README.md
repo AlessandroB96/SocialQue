@@ -9,7 +9,7 @@ Social Media backend utilizing mongoDB and the mongoose javascript framework whe
 
 ## All Associated Routes
 
-<img src="./assets/img/routes.png" width="110" height="260">
+<img src="./assets/img/routes.png" width="150" height="300">
 
 ## Tools
 
