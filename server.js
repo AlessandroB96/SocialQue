@@ -12,9 +12,14 @@ app.use(require('./routes'));
 
 mongoose.connect('mongodb://0.0.0.0:27017/SocialQue', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+
 });
 
+// mongoose.connect('mongodb://0.0.0.0:27017/SocialQue', function() {
+
+//   mongoose.connection.db.dropDatabase();
+// });
 
 mongoose.set('debug', true);
 app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
